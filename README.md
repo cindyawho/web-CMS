@@ -26,3 +26,28 @@ You should independently run a webserver that will send the webpage file to any 
 
 5. <b>Class and Module Construction</b>: 
 You will employ classes and modules to construct the various elements of your application.
+
+## Concept
+
+### Ideas:
+- Blogging
+- Personal Book Journal/Tracker
+- Project Portfolio
+- Library-related site
+- Fictional Character database like fandom wikis
+
+### Personal Book Journal
+
+- Home page: users will edit their name, journal title and their latest book entry
+- Latest Book entry: date read, title, author, rating, thoughts on the book, cover image
+- Going beyond req's: users can create multiple pages for each of their book entries
+- CSS style:
+  - background color
+  - font color
+  - title font
+  - all other font
+
+#### Figma Design
+
+Tkinter Inputs needed:
+https://www.figma.com/design/1LKiPaDYrf1I9lPZohOQoc/Tkinter-Content-Management-System?node-id=0-1&t=54Q2t0oJrWdt1UAA-1
