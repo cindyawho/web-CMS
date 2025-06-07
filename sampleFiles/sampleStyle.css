@@ -13,6 +13,7 @@ body {
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
+    margin: 100px 0 150px 0;
 }
 .header h2{
     border-top: 4px solid black;
@@ -29,6 +30,26 @@ body {
 /* ****************        MAIN         ********************* */
 /* ********************************************************** */
 
+.latestHeading {
+    border-bottom: 3px solid black;
+    text-align: center;
+}
+.latestJournal{
+    display: flex;
+    flex-direction: row;
+    padding: 0 20px;
+}
+.latestText{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto auto auto;
+}
+.latestText h3, .latestDate {
+    text-align: right;
+}
+.latestDescription{
+    grid-column: 1 / span 2;
+}
 
 
 /* ********************************************************** */
