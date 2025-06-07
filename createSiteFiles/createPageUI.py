@@ -12,9 +12,9 @@ class CreatePage:
         self.root.geometry("1000x700")
         # Styling
         style = ttk.Style()
-        style.configure("title.TLabel", foreground="black", font=('Courier New', 18))
-        style.configure("text.TLabel", foreground="black",  font=('Arial', 14))
-        style.configure("note.TLabel", foreground="#FF4255", font=('Arial', 12))
+        style.configure("title.TLabel", foreground="black", padding=10, font=('Courier New', 18))
+        style.configure("text.TLabel", foreground="black", padding=10,  font=('Arial', 14))
+        # style.configure("note.TLabel", foreground="#FF4255", font=('Arial', 12))
         style.configure("TEntry", foreground = "blue")
 
         # HTML Title
@@ -23,17 +23,19 @@ class CreatePage:
 
         # User Inputs for HTML Page
         self.nameLabel = ttk.Label(self.root, text="Display Name: ", style="text.TLabel")
-        self.nameLabel.grid(row=1, column=0, columnspan=2, pady=20, padx=20)
+        self.nameLabel.grid(row=1, column=0, columnspan=2)
         self.nameEntry = ttk.Entry(self.root, style="TEntry", width=50)
-        self.nameEntry.grid(row=1, column=1, columnspan=8, pady=20, padx=20)
+        self.nameEntry.grid(row=1, column=1, columnspan=8)
 
         self.siteTitleLabel = ttk.Label(self.root, text="Site Heading: ", style="text.TLabel")
-        self.siteTitleLabel.grid(row=2, column=0, columnspan=2, pady=20, padx=20)
+        self.siteTitleLabel.grid(row=2, column=0, columnspan=2)
         self.siteTitleEntry = ttk.Entry(self.root, style="TEntry", width=50)
-        self.siteTitleEntry.grid(row=2, column=1, columnspan=8, pady=20, padx=20)
+        self.siteTitleEntry.grid(row=2, column=1, columnspan=8)
 
-        self.hobbyNoteLabel = ttk.Label(self.root, text="*Note: Please separate each hobby with a comma. ", style="note.TLabel")
-        self.hobbyNoteLabel.grid(row=3, column=0, columnspan=4, padx=20)
+        self.bookTitleLabel = ttk.Label(self.root, text="Book Title: ", style="text.TLabel")
+        self.bookTitleLabel.grid(row=3, column=0, columnspan=2)
+        self.bookTitleEntry = ttk.Entry(self.root, style="TEntry", width=50)
+        self.bookTitleEntry.grid(row=3, column=1, columnspan=8)
 
          # CSS Title
         self.greetLabel = ttk.Label(self.root, text="Time to Style Your Site! If nothing is selected, default styling will be used.", style="title.TLabel")
@@ -51,14 +53,14 @@ class CreatePage:
         # User Inputs for CSS
         self.bgColorVar = tk.StringVar(self.root, "")
         self.bgColorLabel = ttk.Label(self.root, text="Background: ", style="text.TLabel")
-        self.bgColorLabel.grid(row=6, column=0, columnspan=2, pady=20, padx=20)
+        self.bgColorLabel.grid(row=6, column=0, columnspan=2)
         self.bgColorButton = ttk.Button(self.root, text='Select a BackgroundColor', command=self.changeColor)
         self.bgColorButton.grid(row=6, column=1, columnspan=8, pady=20, padx=20)
         self.colorLabel = ttk.Label(self.root, text=".   color   .", style="text.TLabel")
-        self.colorLabel.grid(row=6, column=3, columnspan=2, pady=20, padx=20)
+        self.colorLabel.grid(row=6, column=3, columnspan=2)
 
         self.fontLabel = ttk.Label(self.root, text="Font Family: ", style="text.TLabel")
-        self.fontLabel.grid(row=7, column=0, columnspan=2, pady=20, padx=20)
+        self.fontLabel.grid(row=7, column=0, columnspan=2)
         self.fonts = ["Arial", "Comic Sans MS", "Courier New", "Impact", "Georgia", "Lexend", "MS Gothic"]
         self.fontsCombobox = ttk.Combobox(root, values=self.fonts, font=("Arial", 12))
         self.fontsCombobox.grid(row=7, column=1, columnspan=8, pady=20, padx=20)
