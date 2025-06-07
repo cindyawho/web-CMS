@@ -3,6 +3,7 @@ from tkinter import ttk
 from tkinter.colorchooser import askcolor
 from writeHTML import *
 from writeCSS import *
+from writeJSONfile import *
 
 class CreatePage:
     def __init__(self, root):
@@ -124,6 +125,7 @@ class CreatePage:
 
         if name and siteTitle:
             self.errorLabel.destroy()
+            writeJSONfile(name, siteTitle)
             writeHTMLFile(name, siteTitle)
             writeCSSFile(bgColor, fontFamily)
 
