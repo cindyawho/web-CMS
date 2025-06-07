@@ -55,3 +55,16 @@ body {
 /* ********************************************************** */
 /* ****************       FOOTER        ********************* */
 /* ********************************************************** */
+footer {
+    background-color: #7B6041;
+    color: whitesmoke;
+    width: 110%;
+    height: 100px;
+    margin: 50px 0 -15px -15px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+footer p {
+    padding-left: 50px;
+}
