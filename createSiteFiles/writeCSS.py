@@ -1,11 +1,11 @@
-def writeCSSFile(bgColor="#FFECD5", fontColor="black", fontFamily="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"):
+def writeCSSFile(bgColor="#FFECD5", fontColor="black", fontFamily="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"):
     print("Writing CSS File...")
     print(f"Received: {bgColor} and {fontFamily}")
     with open('createSiteFiles\\userFiles\\styles.css', 'w') as f:
         # * styles
         f.writelines(["* {\n", "\tbox-sizing: border-box;\n", "}\n\n"])
         # body styles
-        f.writelines(["body {\n", f"\tbackground: {bgColor};\n", f"\tfont-family: {fontFamily};\n", f"\tcolor: {fontColor};\n", "\tpadding: 20px;\n", "}\n\n"])
+        f.writelines(["body {\n", f"\tbackground-color: {bgColor};\n", f"\tfont-family: {fontFamily};\n", f"\tcolor: {fontColor};\n", "\tpadding: 20px;\n", "}\n\n"])
         
         # HEADER styles
         f.writelines(["\n/* ********************************************************** */\n/* ****************        HEADER       ********************* */\n/* ********************************************************** */\n\n"])
@@ -42,7 +42,7 @@ def writeCSSFile(bgColor="#FFECD5", fontColor="black", fontFamily="'Segoe UI', T
         # FOOTER Styles
         f.writelines(["\n/* ********************************************************** */\n/* ****************        FOOTER         ********************* */\n/* ********************************************************** */\n\n"])
         f.writelines(["footer {\n",
-                      "\tbackground-color: #7B6041; color: whitesmoke; width: 110%; height: 100px; margin: 50px 0 -15px -15px; display: flex; align-items: center; justify-content: left;",
+                      "\tbackground-color: #ffffff; color: whitesmoke; width: 110%; height: 100px; margin: 50px 0 -15px -15px; display: flex; align-items: center; justify-content: left;",
                       "}\n",
                       "footer p {\n",
                       "\tpadding-left: 50px;\n",
