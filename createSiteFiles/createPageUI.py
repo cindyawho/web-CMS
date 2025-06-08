@@ -106,30 +106,37 @@ class EditPageUI(tk.Frame):
 
         # User Inputs for CSS
         self.bgColorVar = tk.StringVar(self, "")
-        self.bgColorLabel = ttk.Label(self, text="Background: ", style="text.TLabel")
+        self.bgColorLabel = ttk.Label(self, text="Background Color: ", style="text.TLabel")
         self.bgColorLabel.grid(row=7, column=0, sticky="e", padx=10, pady=5)
 
         self.bgColorButton = ttk.Button(self, text='Select Background Color', command=self.changeColor)
         self.bgColorButton.grid(row=7, column=1, sticky="w", padx=5)
 
+        self.fontColorVar = tk.StringVar(self, "")
+        self.fontColorLabel = ttk.Label(self, text="Font Color: ", style="text.TLabel")
+        self.fontColorLabel.grid(row=8, column=0, sticky="e", padx=10, pady=5)
+
+        self.fontColorButton = ttk.Button(self, text='Select Font Color', command=self.changeColor)
+        self.fontColorButton.grid(row=8, column=1, sticky="w", padx=5)
+
         self.colorLabel = ttk.Label(self, text=".   PREVIEW   .", style="text.TLabel")
-        self.colorLabel.grid(row=7, column=2, columnspan=2, sticky="w", padx=10)
+        self.colorLabel.grid(row=8, column=2, columnspan=2, sticky="w", padx=10)
 
         self.fontLabel = ttk.Label(self, text="Font Family: ", style="text.TLabel")
-        self.fontLabel.grid(row=8, column=0, sticky="e", padx=10, pady=5)
+        self.fontLabel.grid(row=9, column=0, sticky="e", padx=10, pady=5)
         self.fonts = ["Arial", "Comic Sans MS", "Courier New", "Impact", "Georgia", "Lexend", "MS Gothic"]
         self.fontsCombobox = ttk.Combobox(self, values=self.fonts, font=("Arial", 12), width=30)
-        self.fontsCombobox.grid(row=8, column=1, columnspan=3, sticky="w", padx=5)
+        self.fontsCombobox.grid(row=9, column=1, columnspan=3, sticky="w", padx=5)
 
         self.submitButton = ttk.Button(self, text="Save and Update Website", command=self.createWebsite)
-        self.submitButton.grid(row=9, column=0, columnspan=4, padx=20, pady=20)
+        self.submitButton.grid(row=10, column=0, columnspan=4, padx=20, pady=20)
 
         # Error Labeling for name being empty
         self.errorLabel = ttk.Label(self, text="")
-        self.errorLabel.grid(row=10, column=0, columnspan=4, pady=10, padx=20)
+        self.errorLabel.grid(row=11, column=0, columnspan=4, pady=10, padx=20)
 
         button1 = ttk.Button(self, text="Home", command=lambda: controller.show_frame("Home"))
-        button1.grid(row=11, column=3, sticky="e", padx=10, pady=10)
+        button1.grid(row=12, column=3, sticky="e", padx=10, pady=10)
 
     # ~~~~~~~~~~~~ Form Functions ~~~~~~~~~~~~~~~
     # color picker
@@ -211,22 +218,6 @@ class EditPageUI(tk.Frame):
             return "Website CMS created by Cindy for a PCC project."
         else:
             return desc
-        
-    def checkBGColor(self):
-        bgColor = self.bgColorVar
-        print(bgColor)
-        if bgColor == "":
-            return False
-        else:
-            return bgColor
-    
-    def checkFont(self):
-        font = self.fontsCombobox.get()
-        print(font)
-        if font == "":
-            return False
-        else:
-            return font
 
     # Call error handling functions and write files
     def createWebsite(self):
@@ -242,14 +233,15 @@ class EditPageUI(tk.Frame):
         spoilers = self.checkSpoilers()
         footer = self.checkFooter()
         # CSS
-        bgColor = self.checkBGColor()
-        fontFamily = self.checkFont()
+        bgColor = self.bgColorVar
+        fontColor = self.fontColorVar
+        fontFamily = self.fontsCombobox.get()
 
         if name and bookTitle:
             self.errorLabel.destroy()
             writeJSONfile(name, siteTitle, bookTitle, author, date, rating, desc, coverImg, spoilers, footer)
             writeHTMLFile(name, siteTitle, bookTitle, author, date, rating, desc, coverImg, spoilers, footer)
-            writeCSSFile(bgColor, fontFamily)
+            writeCSSFile(bgColor, fontColor, fontFamily)
 
     def readFile(self):
         with open('..\\server\\user.json', 'r') as f:
