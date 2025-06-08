@@ -87,32 +87,49 @@ class EditPageUI(tk.Frame):
         self.imgEntry.insert(tk.END, coverImg)
         self.imgEntry.grid(row=4, column=3, sticky='w', padx=5)
 
+        # Row 5 Spoilers and Footer
+        self.spoilersLabel = ttk.Label(self, text="Spoilers: ", style="text.TLabel")
+        self.spoilersLabel.grid(row=5, column=0, sticky='e', padx=10, pady=5)
+        self.spoilersEntry = tk.Text(self, width=40, height=7)
+        self.spoilersEntry.insert(tk.END, spoilers)
+        self.spoilersEntry.grid(row=5, column=1, sticky='w', padx=5)
+
+        self.footerLabel = ttk.Label(self, text="Footer: ", style="text.TLabel")
+        self.footerLabel.grid(row=5, column=2, sticky='e', padx=10, pady=5)
+        self.footerEntry = tk.Text(self, width=40, height=7)
+        self.footerEntry.insert(tk.END, footer)
+        self.footerEntry.grid(row=5, column=3, sticky='w', padx=5)
+
          # CSS Title
         self.CSSgreetLabel = ttk.Label(self, text="Time to Style Your Site! If nothing is selected, default styling will be used.", style="title.TLabel")
-        self.CSSgreetLabel.grid(row=5, column=0, columnspan=10, pady=(35, 20), padx=20)
-        
+        self.CSSgreetLabel.grid(row=6, column=0, columnspan=4, pady=(35, 20), padx=20)
+
         # User Inputs for CSS
         self.bgColorVar = tk.StringVar(self, "")
         self.bgColorLabel = ttk.Label(self, text="Background: ", style="text.TLabel")
-        self.bgColorLabel.grid(row=6, column=0, columnspan=2)
-        self.bgColorButton = ttk.Button(self, text='Select a BackgroundColor', command=self.changeColor)
-        self.bgColorButton.grid(row=6, column=1, columnspan=8, pady=20, padx=20)
+        self.bgColorLabel.grid(row=7, column=0, sticky="e", padx=10, pady=5)
+
+        self.bgColorButton = ttk.Button(self, text='Select Background Color', command=self.changeColor)
+        self.bgColorButton.grid(row=7, column=1, sticky="w", padx=5)
+
         self.colorLabel = ttk.Label(self, text=".   PREVIEW   .", style="text.TLabel")
-        self.colorLabel.grid(row=6, column=3, columnspan=2)
+        self.colorLabel.grid(row=7, column=2, columnspan=2, sticky="w", padx=10)
 
         self.fontLabel = ttk.Label(self, text="Font Family: ", style="text.TLabel")
-        self.fontLabel.grid(row=7, column=0, columnspan=2)
+        self.fontLabel.grid(row=8, column=0, sticky="e", padx=10, pady=5)
         self.fonts = ["Arial", "Comic Sans MS", "Courier New", "Impact", "Georgia", "Lexend", "MS Gothic"]
-        self.fontsCombobox = ttk.Combobox(self, values=self.fonts, font=("Arial", 12))
-        self.fontsCombobox.grid(row=7, column=1, columnspan=8, pady=20, padx=20)
+        self.fontsCombobox = ttk.Combobox(self, values=self.fonts, font=("Arial", 12), width=30)
+        self.fontsCombobox.grid(row=8, column=1, columnspan=3, sticky="w", padx=5)
 
-        self.submitButton = ttk.Button(self, text="Create my Website!", command=self.createWebsite)
-        self.submitButton.grid(row=8, column=0, columnspan=10, padx=20, pady=20)
+        self.submitButton = ttk.Button(self, text="Save and Update Website", command=self.createWebsite)
+        self.submitButton.grid(row=9, column=0, columnspan=4, padx=20, pady=20)
+
+        # Error Labeling for name being empty
         self.errorLabel = ttk.Label(self, text="")
-        self.errorLabel.grid(row=9, column=0, columnspan=10, pady=20, padx=20)
+        self.errorLabel.grid(row=10, column=0, columnspan=4, pady=10, padx=20)
 
         button1 = ttk.Button(self, text="Home", command=lambda: controller.show_frame("Home"))
-        button1.grid(row=10, column=3)
+        button1.grid(row=11, column=3, sticky="e", padx=10, pady=10)
 
     # ~~~~~~~~~~~~ Form Functions ~~~~~~~~~~~~~~~
     # color picker
@@ -180,6 +197,20 @@ class EditPageUI(tk.Frame):
             return "https://images.pexels.com/photos/6373305/pexels-photo-6373305.jpeg"
         else:
             return img
+    
+    # row 5 spoilers and footer
+    def checkSpoilers(self):
+        desc = self.spoilersEntry.get("1.0", tk.END)
+        if desc == "":
+            return "No Spoilers to add :)"
+        else:
+            return desc
+    def checkFooter(self):
+        desc = self.footerEntry.get("1.0", tk.END)
+        if desc == "":
+            return "Website CMS created by Cindy for a PCC project."
+        else:
+            return desc
         
     def checkBGColor(self):
         bgColor = self.bgColorVar
@@ -208,14 +239,16 @@ class EditPageUI(tk.Frame):
         rating = self.checkRating()
         desc = self.checkDesc()
         coverImg = self.checkCover()
+        spoilers = self.checkSpoilers()
+        footer = self.checkFooter()
         # CSS
         bgColor = self.checkBGColor()
         fontFamily = self.checkFont()
 
         if name and bookTitle:
             self.errorLabel.destroy()
-            writeJSONfile(name, siteTitle, bookTitle, author, date, rating, desc, coverImg)
-            writeHTMLFile(name, siteTitle, bookTitle, author, date, rating, desc, coverImg)
+            writeJSONfile(name, siteTitle, bookTitle, author, date, rating, desc, coverImg, spoilers, footer)
+            writeHTMLFile(name, siteTitle, bookTitle, author, date, rating, desc, coverImg, spoilers, footer)
             writeCSSFile(bgColor, fontFamily)
 
     def readFile(self):
