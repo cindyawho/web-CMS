@@ -84,7 +84,7 @@ class EditPageUI(tk.Frame):
         self.imgLabel = ttk.Label(self, text="Image URL: ", style="text.TLabel")
         self.imgLabel.grid(row=4, column=2, sticky='e', padx=10, pady=5)
         self.imgEntry = ttk.Entry(self, style="TEntry", width=30)
-        self.imgEntry.insert(tk.END, rating)
+        self.imgEntry.insert(tk.END, coverImg)
         self.imgEntry.grid(row=4, column=3, sticky='w', padx=5)
 
          # CSS Title
@@ -121,8 +121,11 @@ class EditPageUI(tk.Frame):
         # print(colors)
         self.colorLabel.configure(background=colors[1])
         self.bgColorVar = colors[1]
-
+    
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # Error Handling for Empty HTML Inputs
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # row 1 username and site title
     def checkName(self):
         userName = self.nameEntry.get()
         if userName == "":
@@ -137,6 +140,46 @@ class EditPageUI(tk.Frame):
             return "Personal Book Journal"
         else:
             return siteTitle
+    # row 2 book title and author
+    def checkBookTitle(self):
+        bookTitle = self.bookTitleEntry.get()
+        if bookTitle == "":
+            self.errorLabel.config(text="Error: Please Enter a Book Title.", foreground="red", font=("Arial", 14))
+            return False
+        else:
+            return bookTitle
+    def checkAuthor(self):
+        author = self.authorEntry.get()
+        if author == "":
+            return "Unknown"
+        else:
+            return author
+    # row 3 date read and rating
+    def checkDate(self):
+        date = self.dateEntry.get()
+        if date == "":
+            return "Recently"
+        else:
+            return date
+    def checkRating(self):
+        rating = self.ratingEntry.get()
+        if rating == "":
+            return "OK Read"
+        else:
+            return rating
+    # row 4 description and cover image
+    def checkDesc(self):
+        desc = self.descEntry.get("1.0", tk.END)
+        if desc == "":
+            return "It was okay, but not interesting enough for me to write a review."
+        else:
+            return desc
+    def checkCover(self):
+        img = self.imgEntry.get()
+        if img == "":
+            return "https://images.pexels.com/photos/6373305/pexels-photo-6373305.jpeg"
+        else:
+            return img
         
     def checkBGColor(self):
         bgColor = self.bgColorVar
@@ -156,15 +199,23 @@ class EditPageUI(tk.Frame):
 
     # Call error handling functions and write files
     def createWebsite(self):
+        # HTML Input Entries
         name = self.checkName()
         siteTitle = self.checkSiteTitle()
+        bookTitle = self.checkBookTitle()
+        author = self.checkAuthor()
+        date = self.checkDate()
+        rating = self.checkRating()
+        desc = self.checkDesc()
+        coverImg = self.checkCover()
+        # CSS
         bgColor = self.checkBGColor()
         fontFamily = self.checkFont()
 
-        if name and siteTitle:
+        if name and bookTitle:
             self.errorLabel.destroy()
-            writeJSONfile(name, siteTitle)
-            writeHTMLFile(name, siteTitle)
+            writeJSONfile(name, siteTitle, bookTitle, author, date, rating, desc, coverImg)
+            writeHTMLFile(name, siteTitle, bookTitle, author, date, rating, desc, coverImg)
             writeCSSFile(bgColor, fontFamily)
 
     def readFile(self):

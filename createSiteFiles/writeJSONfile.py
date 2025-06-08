@@ -1,6 +1,6 @@
 import json
 
-def writeJSONfile(name, siteTitle="Personal Book Journal"):
+def writeJSONfile(name, siteTitle, bookTitle, author, date, rating, desc, coverImg):
     data = {}
 
     data["userName"] = name
@@ -18,5 +18,5 @@ def writeJSONfile(name, siteTitle="Personal Book Journal"):
     })
     data["footerDescription"]="Want to talk books? Send me an email at example@pcc.edu!"
 
-    with open('data.json', 'w') as outfile:  
+    with open('createSiteFiles\\userFiles\\user.json', 'w') as outfile:  
         json.dump(data, outfile)
