@@ -1,7 +1,7 @@
 def writeHTMLFile(name, siteTitle, bookTitle, author, date, rating, desc, coverImg):
     print("Writing HTML File...")
     print(f"Received: {name}, {siteTitle}, {bookTitle}, {author}, {date}, {rating}, {desc}, {coverImg}")
-    with open('server\\index.html', 'w') as f:
+    with open('..\\server\\index.html', 'w') as f:
         # write beginning and html head
         f.writelines(["<!DOCTYPE html>\n", "<html lang='en'>\n" "<head>\n", "\t<meta charset='UTF-8'>\n", '\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n',f"\t<title>{siteTitle}</title>\n", '\t<link rel="stylesheet" href="styles.css">\n', "</head>\n"])
 

@@ -1,6 +1,6 @@
 import socket
 
-def run_server(HOST='localhost',PORT="12345"):
+def run_server(HOST='localhost',PORT=12345):
     my_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     my_socket.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
     my_socket.bind((HOST,PORT))
@@ -42,4 +42,4 @@ def run_server(HOST='localhost',PORT="12345"):
         connection.send(final_response)
         connection.close()
 if __name__ == "__main__":
-    run_server('127.0.0.1',1234)
+    run_server('127.0.0.1',12345)

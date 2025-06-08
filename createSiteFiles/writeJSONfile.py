@@ -18,5 +18,5 @@ def writeJSONfile(name, siteTitle, bookTitle, author, date, rating, desc, coverI
     })
     data["footerDescription"]="Want to talk books? Send me an email at example@pcc.edu!"
 
-    with open('server\\user.json', 'w') as outfile:  
+    with open('..\\server\\user.json', 'w') as outfile:  
         json.dump(data, outfile)
