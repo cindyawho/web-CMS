@@ -26,7 +26,7 @@ def writeCSSFile(bgColor="#FFECD5", fontColor="black", fontFamily="'Segoe UI', T
                       "\tborder-bottom: 3px solid black; text-align: center;",
                       "}\n",
                       ".latestJournal {\n",
-                      "\tdisplay: flex; flex-direction: row;padding: 0 20px;",
+                      "\tdisplay: flex;\n\t flex-direction: row;\n\t gap:50px;\n\t padding: 0 20px;\n\t justify-self: center;",
                       "}\n",
                       ".latestText {\n",
                       "\tdisplay: grid; grid-template-columns: auto auto; grid-template-rows: auto auto auto auto auto;",
@@ -34,8 +34,14 @@ def writeCSSFile(bgColor="#FFECD5", fontColor="black", fontFamily="'Segoe UI', T
                       ".latestText h3, .latestDate {\n",
                       "\ttext-align: right;",
                       "}\n",
-                      ".latestDescription {\n",
-                      "\tgrid-column: 1 / span 2;",
+                      ".latestReview{\n",
+                      "\tgrid-column: 1 / span 2;\n \tmax-width: 700px;\n \tmax-width: 700px;\n \tjustify-self: center;\n",
+                      "}\n",
+                      ".spoilers span {\n",
+                      "\tbackground-color: black;\n \tcolor: black;\n \ttransition: 1s;\n",
+                      "}\n",
+                      ".spoilers span:hover {\n",
+                      "\tbackground-color: #FFECD5;\n \tcolor: black;\n \ttransition: 1s;\n"
                       "}\n\n",
                       ])
         
