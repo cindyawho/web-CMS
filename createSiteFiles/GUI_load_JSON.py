@@ -2,19 +2,17 @@ import tkinter as tk
 from tkinter import ttk
 import json
 
-class GUI_load_JSON:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Book Journal CMS")
-        self.root.geometry("1000x700")
+class Home(tk.Frame):
+    def __init__(self, parent, controller): 
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
 
-        self.text = tk.Text(self.root)
+        self.text = tk.Text(self)
         self.text.pack()
 
-        # Sample JSON
         with open('createSiteFiles\\userFiles\\user.json', 'r') as f:
             data = json.load(f)
-            # print(data)
+
             username = data["userName"]
             siteTitle = data["title"]
             journalTitle = data["journalTitle"]
@@ -23,7 +21,7 @@ class GUI_load_JSON:
             bookEntry = data["bookEntries"][0]
             date = bookEntry["date"]
             title = bookEntry["title"]
-            author = bookEntry["date"]
+            author = bookEntry["author"]
             coverImg = bookEntry["coverURL"]
             rating = bookEntry["rating"]
             description = bookEntry["description"]
@@ -33,4 +31,8 @@ class GUI_load_JSON:
             self.text.insert(tk.END, f"{journalTitle}\n\n")
             self.text.insert(tk.END, f"{date}\n {title}\n {author}\n {coverImg}\n {rating}\n {description}\n {spoilers}\n")
             self.text.insert(tk.END, f"{footer}\n\n")
+
+        button1 = ttk.Button(self, text="Edit Page", command=lambda: controller.show_frame("EditPageUI"))
+        button1.pack()
+
         self.text.config(state=tk.DISABLED)

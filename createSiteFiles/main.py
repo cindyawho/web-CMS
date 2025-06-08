@@ -1,8 +1,11 @@
 import createPageUI as cui
-import GUI_load_JSON as loadJSON
+import switchPages
 import tkinter as tk
 
 if __name__ == "__main__":
     root = tk.Tk()
-    app = loadJSON.GUI_load_JSON(root)
+    root.title("Book Journal CMS")
+    root.geometry("1000x700")
+    
+    app = switchPages.tkinterApp(root)
     root.mainloop()
