@@ -32,36 +32,64 @@ class EditPageUI(tk.Frame):
 
         # HTML Title
         self.greetLabel = ttk.Label(self, text="Welcome to your Book Journal Content Management System", style="title.TLabel")
-        self.greetLabel.grid(row=0, column=0, columnspan=10, pady=20, padx=20)
+        self.greetLabel.grid(row=0, column=0, columnspan=4, pady=20, padx=20)
 
         # User Inputs for HTML Page
+        # Row 1 Username and site title
         self.nameLabel = ttk.Label(self, text="Display Name: ", style="text.TLabel")
-        self.nameLabel.grid(row=1, column=1)
-        self.nameEntry = ttk.Entry(self, style="TEntry", width=50)
+        self.nameLabel.grid(row=1, column=0, sticky='e', padx=10, pady=5)
+        self.nameEntry = ttk.Entry(self, style="TEntry", width=30)
         self.nameEntry.insert(tk.END, username)
-        self.nameEntry.grid(row=1, column=1, columnspan=9)
+        self.nameEntry.grid(row=1, column=1, sticky='w', padx=5)
 
         self.siteTitleLabel = ttk.Label(self, text="Site Heading: ", style="text.TLabel")
-        self.siteTitleLabel.grid(row=2, column=1)
-        self.siteTitleEntry = ttk.Entry(self, style="TEntry", width=50)
+        self.siteTitleLabel.grid(row=1, column=2, sticky='e', padx=10, pady=5)
+        self.siteTitleEntry = ttk.Entry(self, style="TEntry", width=30)
         self.siteTitleEntry.insert(tk.END, siteTitle)
-        self.siteTitleEntry.grid(row=2, column=1, columnspan=9)
+        self.siteTitleEntry.grid(row=1, column=3, sticky='w', padx=5)
 
+        # Row 2 Book title and author
         self.bookTitleLabel = ttk.Label(self, text="Book Title: ", style="text.TLabel")
-        self.bookTitleLabel.grid(row=3, column=1)
-        self.bookTitleEntry = ttk.Entry(self, style="TEntry", width=50)
+        self.bookTitleLabel.grid(row=2, column=0, sticky='e', padx=10, pady=5)
+        self.bookTitleEntry = ttk.Entry(self, style="TEntry", width=30)
         self.bookTitleEntry.insert(tk.END, title)
-        self.bookTitleEntry.grid(row=3, column=1, columnspan=9)
+        self.bookTitleEntry.grid(row=2, column=1, sticky='w', padx=5)
 
         self.authorLabel = ttk.Label(self, text="Author: ", style="text.TLabel")
-        self.authorLabel.grid(row=4, column=1)
-        self.authorEntry = ttk.Entry(self, style="TEntry", width=50)
+        self.authorLabel.grid(row=2, column=2, sticky='e', padx=10, pady=5)
+        self.authorEntry = ttk.Entry(self, style="TEntry", width=30)
         self.authorEntry.insert(tk.END, author)
-        self.authorEntry.grid(row=4, column=1, columnspan=9)
+        self.authorEntry.grid(row=2, column=3, sticky='w', padx=5)
+
+        # Row 3 date read and rating
+        self.dateLabel = ttk.Label(self, text="Date Finished: ", style="text.TLabel")
+        self.dateLabel.grid(row=3, column=0, sticky='e', padx=10, pady=5)
+        self.dateEntry = ttk.Entry(self, style="TEntry", width=30)
+        self.dateEntry.insert(tk.END, date)
+        self.dateEntry.grid(row=3, column=1, sticky='w', padx=5)
+
+        self.ratingLabel = ttk.Label(self, text="Rating: ", style="text.TLabel")
+        self.ratingLabel.grid(row=3, column=2, sticky='e', padx=10, pady=5)
+        self.ratingEntry = ttk.Entry(self, style="TEntry", width=30)
+        self.ratingEntry.insert(tk.END, rating)
+        self.ratingEntry.grid(row=3, column=3, sticky='w', padx=5)
+
+        # Row 4 Description and cover img
+        self.descLabel = ttk.Label(self, text="Review: ", style="text.TLabel")
+        self.descLabel.grid(row=4, column=0, sticky='e', padx=10, pady=5)
+        self.descEntry = tk.Text(self, width=40, height=7)
+        self.descEntry.insert(tk.END, description)
+        self.descEntry.grid(row=4, column=1, sticky='w', padx=5)
+
+        self.imgLabel = ttk.Label(self, text="Image URL: ", style="text.TLabel")
+        self.imgLabel.grid(row=4, column=2, sticky='e', padx=10, pady=5)
+        self.imgEntry = ttk.Entry(self, style="TEntry", width=30)
+        self.imgEntry.insert(tk.END, rating)
+        self.imgEntry.grid(row=4, column=3, sticky='w', padx=5)
 
          # CSS Title
         self.CSSgreetLabel = ttk.Label(self, text="Time to Style Your Site! If nothing is selected, default styling will be used.", style="title.TLabel")
-        self.CSSgreetLabel.grid(row=5, column=0, columnspan=10, pady=(75, 20), padx=20)
+        self.CSSgreetLabel.grid(row=5, column=0, columnspan=10, pady=(35, 20), padx=20)
         
         # User Inputs for CSS
         self.bgColorVar = tk.StringVar(self, "")
@@ -69,7 +97,7 @@ class EditPageUI(tk.Frame):
         self.bgColorLabel.grid(row=6, column=0, columnspan=2)
         self.bgColorButton = ttk.Button(self, text='Select a BackgroundColor', command=self.changeColor)
         self.bgColorButton.grid(row=6, column=1, columnspan=8, pady=20, padx=20)
-        self.colorLabel = ttk.Label(self, text=".   color   .", style="text.TLabel")
+        self.colorLabel = ttk.Label(self, text=".   PREVIEW   .", style="text.TLabel")
         self.colorLabel.grid(row=6, column=3, columnspan=2)
 
         self.fontLabel = ttk.Label(self, text="Font Family: ", style="text.TLabel")
