@@ -1,7 +1,11 @@
+from pathlib import Path
+
 def writeHTMLFile(name, siteTitle, bookTitle, author, date, rating, desc, coverImg, spoilers, footer):
     print("Writing HTML File...")
-    print(f"Received: {name}, {siteTitle}, {bookTitle}, {author}, {date}, {rating}, {desc}, {coverImg}, {spoilers}, {footer}")
-    with open('..\\server\\index.html', 'w') as f:
+    # print(f"Received: {name}, {siteTitle}, {bookTitle}, {author}, {date}, {rating}, {desc}, {coverImg}, {spoilers}, {footer}")
+    htmlFilePath = Path('server/index.html')
+    
+    with open(htmlFilePath, 'w') as f:
         # write beginning and html head
         f.writelines([
             "<!DOCTYPE html>\n", 

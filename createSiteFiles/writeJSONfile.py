@@ -1,6 +1,8 @@
 import json
+from pathlib import Path
 
 def writeJSONfile(name, siteTitle, bookTitle, author, date, rating, desc, coverImg, spoilers, footer):
+    jsonFilePath = Path('server/user.json')
     data = {}
 
     data["userName"] = name
@@ -18,5 +20,5 @@ def writeJSONfile(name, siteTitle, bookTitle, author, date, rating, desc, coverI
     })
     data["footerDescription"]=footer
 
-    with open('..\\server\\user.json', 'w') as outfile:  
+    with open(jsonFilePath, 'w') as outfile:  
         json.dump(data, outfile)

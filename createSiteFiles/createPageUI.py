@@ -4,8 +4,11 @@ from tkinter.colorchooser import askcolor
 from writeHTML import *
 from writeCSS import *
 from writeJSONfile import *
+from pathlib import Path
 
 class EditPageUI(tk.Frame):
+    jsonFilePath = Path('server/user.json')
+
     def __init__(self, parent, controller): 
         tk.Frame.__init__(self, parent)
         self.controller = controller
@@ -244,6 +247,6 @@ class EditPageUI(tk.Frame):
             writeCSSFile(bgColor, fontColor, fontFamily)
 
     def readFile(self):
-        with open('..\\server\\user.json', 'r') as f:
+        with open(self.jsonFilePath, 'r') as f:
             data = json.load(f)
         return data

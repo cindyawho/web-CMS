@@ -1,7 +1,11 @@
+from pathlib import Path
+
 def writeCSSFile(bgColor="#FFECD5", fontColor="black", fontFamily="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"):
     print("Writing CSS File...")
-    print(f"Received: {bgColor}, {fontColor}, {fontFamily}")
-    with open('..\\server\\styles.css', 'w') as f:
+    # print(f"Received: {bgColor}, {fontColor}, {fontFamily}")
+    cssFilePath = Path('server/styles.css')
+
+    with open(cssFilePath, 'w') as f:
         # * styles
         f.writelines(["* {\n", "\tbox-sizing: border-box;\n", "}\n\n"])
         # body styles
