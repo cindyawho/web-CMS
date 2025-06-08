@@ -13,7 +13,7 @@ class Home(tk.Frame):
         self.text = tk.Text(self)
         self.text.pack()
 
-        with open('server\\userFiles\\user.json', 'r') as f:
+        with open('server\\user.json', 'r') as f:
             data = json.load(f)
 
             username = data["userName"]

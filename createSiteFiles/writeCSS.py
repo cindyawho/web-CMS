@@ -1,7 +1,7 @@
 def writeCSSFile(bgColor="#FFECD5", fontColor="black", fontFamily="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"):
     print("Writing CSS File...")
     print(f"Received: {bgColor} and {fontFamily}")
-    with open('server\\userFiles\\styles.css', 'w') as f:
+    with open('server\\styles.css', 'w') as f:
         # * styles
         f.writelines(["* {\n", "\tbox-sizing: border-box;\n", "}\n\n"])
         # body styles

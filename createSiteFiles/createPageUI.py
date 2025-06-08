@@ -219,6 +219,6 @@ class EditPageUI(tk.Frame):
             writeCSSFile(bgColor, fontFamily)
 
     def readFile(self):
-        with open('server\\userFiles\\user.json', 'r') as f:
+        with open('server\\user.json', 'r') as f:
             data = json.load(f)
         return data
