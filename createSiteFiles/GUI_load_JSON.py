@@ -29,7 +29,8 @@ class Home(tk.Frame):
 
             self.text.insert(tk.END, f"{username}'s {siteTitle}\n\n")
             self.text.insert(tk.END, f"{journalTitle}\n\n")
-            self.text.insert(tk.END, f"{date}\n {title}\n {author}\n {coverImg}\n {rating}\n {description}\n {spoilers}\n")
+            self.text.insert(tk.END, "Latest Book Entry:\n")
+            self.text.insert(tk.END, f"{date}\n {title}\n {author}\n {coverImg}\n {rating}\n {description}\n {spoilers}\n\n")
             self.text.insert(tk.END, f"{footer}\n\n")
 
         button1 = ttk.Button(self, text="Edit Page", command=lambda: controller.show_frame("EditPageUI"))

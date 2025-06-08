@@ -12,9 +12,23 @@ class EditPageUI(tk.Frame):
         # Styling
         style = ttk.Style()
         style.configure("title.TLabel", foreground="black", padding=10, font=('Courier New', 14))
-        style.configure("text.TLabel", foreground="black", padding=10,  font=('Arial', 14))
-        # style.configure("note.TLabel", foreground="#FF4255", font=('Arial', 12))
+        style.configure("text.TLabel", foreground="black", padding=10,  font=('Arial', 14), anchor="e", width=20)
         style.configure("TEntry", foreground = "blue")
+
+        # Grab existing json data ~~~~~~~~~~~~~~~~~~~~~~~
+        self.data = self.readFile()
+        username = self.data["userName"]
+        siteTitle = self.data["title"]
+        journalTitle = self.data["journalTitle"]
+        footer = self.data["footerDescription"]
+        bookEntry = self.data["bookEntries"][0]
+        date = bookEntry["date"]
+        title = bookEntry["title"]
+        author = bookEntry["author"]
+        coverImg = bookEntry["coverURL"]
+        rating = bookEntry["rating"]
+        description = bookEntry["description"]
+        spoilers = bookEntry["spoilers"]
 
         # HTML Title
         self.greetLabel = ttk.Label(self, text="Welcome to your Book Journal Content Management System", style="title.TLabel")
@@ -22,23 +36,32 @@ class EditPageUI(tk.Frame):
 
         # User Inputs for HTML Page
         self.nameLabel = ttk.Label(self, text="Display Name: ", style="text.TLabel")
-        self.nameLabel.grid(row=1, column=0, columnspan=2)
+        self.nameLabel.grid(row=1, column=1)
         self.nameEntry = ttk.Entry(self, style="TEntry", width=50)
-        self.nameEntry.grid(row=1, column=1, columnspan=8)
+        self.nameEntry.insert(tk.END, username)
+        self.nameEntry.grid(row=1, column=1, columnspan=9)
 
         self.siteTitleLabel = ttk.Label(self, text="Site Heading: ", style="text.TLabel")
-        self.siteTitleLabel.grid(row=2, column=0, columnspan=2)
+        self.siteTitleLabel.grid(row=2, column=1)
         self.siteTitleEntry = ttk.Entry(self, style="TEntry", width=50)
-        self.siteTitleEntry.grid(row=2, column=1, columnspan=8)
+        self.siteTitleEntry.insert(tk.END, siteTitle)
+        self.siteTitleEntry.grid(row=2, column=1, columnspan=9)
 
         self.bookTitleLabel = ttk.Label(self, text="Book Title: ", style="text.TLabel")
-        self.bookTitleLabel.grid(row=3, column=0, columnspan=2)
+        self.bookTitleLabel.grid(row=3, column=1)
         self.bookTitleEntry = ttk.Entry(self, style="TEntry", width=50)
-        self.bookTitleEntry.grid(row=3, column=1, columnspan=8)
+        self.bookTitleEntry.insert(tk.END, title)
+        self.bookTitleEntry.grid(row=3, column=1, columnspan=9)
+
+        self.authorLabel = ttk.Label(self, text="Author: ", style="text.TLabel")
+        self.authorLabel.grid(row=4, column=1)
+        self.authorEntry = ttk.Entry(self, style="TEntry", width=50)
+        self.authorEntry.insert(tk.END, author)
+        self.authorEntry.grid(row=4, column=1, columnspan=9)
 
          # CSS Title
         self.CSSgreetLabel = ttk.Label(self, text="Time to Style Your Site! If nothing is selected, default styling will be used.", style="title.TLabel")
-        self.CSSgreetLabel.grid(row=4, column=0, columnspan=10, pady=(75, 20), padx=20)
+        self.CSSgreetLabel.grid(row=5, column=0, columnspan=10, pady=(75, 20), padx=20)
         
         # User Inputs for CSS
         self.bgColorVar = tk.StringVar(self, "")
@@ -116,12 +139,7 @@ class EditPageUI(tk.Frame):
             writeHTMLFile(name, siteTitle)
             writeCSSFile(bgColor, fontFamily)
 
-    # ~~~~~~~~~~~~ Writing File Functions ~~~~~~~~~~~~~~~
-    # ~~~~ See writeHTML.py file
-    # ~~~~ See writeCSSL.py file
-
-    def readFile():
-        f = open('index.html')
-        contents = f.read() # reads file text into string
-        print(contents)
-        f.close()
+    def readFile(self):
+        with open('createSiteFiles\\userFiles\\user.json', 'r') as f:
+            data = json.load(f)
+        return data
