@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from GUI_load_JSON import Home
+from createPageUI import EditPageUI
 
 class tkinterApp(tk.Frame):
     def __init__(self, root, *args, **kwargs): 
@@ -24,16 +25,6 @@ class tkinterApp(tk.Frame):
     def show_frame(self, page_name):
         frame = self.frames[page_name]
         frame.tkraise()
-
-        
-class EditPageUI(tk.Frame):
-    def __init__(self, parent, controller):
-        super().__init__(parent)
-        label = ttk.Label(self, text="User will edit here", font=("Verdana", 35))
-        label.grid(row=0, column=4, padx=10, pady=10)
-        button1 = ttk.Button(self, text="Home",
-                             command=lambda: controller.show_frame("Home"))
-        button1.grid(row=1, column=1, padx=10, pady=10)
 
 # app = tkinterApp()
 # app.mainloop()

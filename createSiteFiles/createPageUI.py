@@ -5,70 +5,63 @@ from writeHTML import *
 from writeCSS import *
 from writeJSONfile import *
 
-class CreatePage:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Book Journal CMS")
-        self.root.geometry("1000x700")
+class EditPageUI(tk.Frame):
+    def __init__(self, parent, controller): 
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
         # Styling
         style = ttk.Style()
-        style.configure("title.TLabel", foreground="black", padding=10, font=('Courier New', 18))
+        style.configure("title.TLabel", foreground="black", padding=10, font=('Courier New', 14))
         style.configure("text.TLabel", foreground="black", padding=10,  font=('Arial', 14))
         # style.configure("note.TLabel", foreground="#FF4255", font=('Arial', 12))
         style.configure("TEntry", foreground = "blue")
 
         # HTML Title
-        self.greetLabel = ttk.Label(self.root, text="Welcome to your Book Journal Content Management System", style="title.TLabel")
+        self.greetLabel = ttk.Label(self, text="Welcome to your Book Journal Content Management System", style="title.TLabel")
         self.greetLabel.grid(row=0, column=0, columnspan=10, pady=20, padx=20)
 
         # User Inputs for HTML Page
-        self.nameLabel = ttk.Label(self.root, text="Display Name: ", style="text.TLabel")
+        self.nameLabel = ttk.Label(self, text="Display Name: ", style="text.TLabel")
         self.nameLabel.grid(row=1, column=0, columnspan=2)
-        self.nameEntry = ttk.Entry(self.root, style="TEntry", width=50)
+        self.nameEntry = ttk.Entry(self, style="TEntry", width=50)
         self.nameEntry.grid(row=1, column=1, columnspan=8)
 
-        self.siteTitleLabel = ttk.Label(self.root, text="Site Heading: ", style="text.TLabel")
+        self.siteTitleLabel = ttk.Label(self, text="Site Heading: ", style="text.TLabel")
         self.siteTitleLabel.grid(row=2, column=0, columnspan=2)
-        self.siteTitleEntry = ttk.Entry(self.root, style="TEntry", width=50)
+        self.siteTitleEntry = ttk.Entry(self, style="TEntry", width=50)
         self.siteTitleEntry.grid(row=2, column=1, columnspan=8)
 
-        self.bookTitleLabel = ttk.Label(self.root, text="Book Title: ", style="text.TLabel")
+        self.bookTitleLabel = ttk.Label(self, text="Book Title: ", style="text.TLabel")
         self.bookTitleLabel.grid(row=3, column=0, columnspan=2)
-        self.bookTitleEntry = ttk.Entry(self.root, style="TEntry", width=50)
+        self.bookTitleEntry = ttk.Entry(self, style="TEntry", width=50)
         self.bookTitleEntry.grid(row=3, column=1, columnspan=8)
 
          # CSS Title
-        self.greetLabel = ttk.Label(self.root, text="Time to Style Your Site! If nothing is selected, default styling will be used.", style="title.TLabel")
-        self.greetLabel.grid(row=4, column=0, columnspan=10, pady=(75, 20), padx=20)
-        # CSS Use Default
-        self.agree = tk.BooleanVar(self.root, True)
-        self.checkbox = ttk.Checkbutton(
-            self.root,
-            text='Use Default Styling - If checked, you can skip the next CSS inputs and default styling will be used.',
-            command=self.checkCSSChoice,
-            variable=self.agree
-        )
-        self.checkbox.grid(row=5, column=0, columnspan=10, pady=20, padx=20)
-
+        self.CSSgreetLabel = ttk.Label(self, text="Time to Style Your Site! If nothing is selected, default styling will be used.", style="title.TLabel")
+        self.CSSgreetLabel.grid(row=4, column=0, columnspan=10, pady=(75, 20), padx=20)
+        
         # User Inputs for CSS
-        self.bgColorVar = tk.StringVar(self.root, "")
-        self.bgColorLabel = ttk.Label(self.root, text="Background: ", style="text.TLabel")
+        self.bgColorVar = tk.StringVar(self, "")
+        self.bgColorLabel = ttk.Label(self, text="Background: ", style="text.TLabel")
         self.bgColorLabel.grid(row=6, column=0, columnspan=2)
-        self.bgColorButton = ttk.Button(self.root, text='Select a BackgroundColor', command=self.changeColor)
+        self.bgColorButton = ttk.Button(self, text='Select a BackgroundColor', command=self.changeColor)
         self.bgColorButton.grid(row=6, column=1, columnspan=8, pady=20, padx=20)
-        self.colorLabel = ttk.Label(self.root, text=".   color   .", style="text.TLabel")
+        self.colorLabel = ttk.Label(self, text=".   color   .", style="text.TLabel")
         self.colorLabel.grid(row=6, column=3, columnspan=2)
 
-        self.fontLabel = ttk.Label(self.root, text="Font Family: ", style="text.TLabel")
+        self.fontLabel = ttk.Label(self, text="Font Family: ", style="text.TLabel")
         self.fontLabel.grid(row=7, column=0, columnspan=2)
         self.fonts = ["Arial", "Comic Sans MS", "Courier New", "Impact", "Georgia", "Lexend", "MS Gothic"]
-        self.fontsCombobox = ttk.Combobox(root, values=self.fonts, font=("Arial", 12))
+        self.fontsCombobox = ttk.Combobox(self, values=self.fonts, font=("Arial", 12))
         self.fontsCombobox.grid(row=7, column=1, columnspan=8, pady=20, padx=20)
 
-        self.submitButton = ttk.Button(self.root, text="Create my Website!", command=self.createWebsite)
+        self.submitButton = ttk.Button(self, text="Create my Website!", command=self.createWebsite)
         self.submitButton.grid(row=8, column=0, columnspan=10, padx=20, pady=20)
-        self.errorLabel = ttk.Label(self.root, text="")
+        self.errorLabel = ttk.Label(self, text="")
         self.errorLabel.grid(row=9, column=0, columnspan=10, pady=20, padx=20)
+
+        button1 = ttk.Button(self, text="Home", command=lambda: controller.show_frame("Home"))
+        button1.grid(row=10, column=3)
 
     # ~~~~~~~~~~~~ Form Functions ~~~~~~~~~~~~~~~
     # color picker
@@ -77,14 +70,6 @@ class CreatePage:
         # print(colors)
         self.colorLabel.configure(background=colors[1])
         self.bgColorVar = colors[1]
-
-    # default or user Styling
-    def checkCSSChoice(self):
-        # print(self.agree.get())
-        if self.agree.get():
-            print("Use Default Styling")
-        else:
-            print("User will input their CSS Choices")
 
     # Error Handling for Empty HTML Inputs
     def checkName(self):
