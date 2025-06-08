@@ -3,6 +3,9 @@ Using Python, I will create a rudimentary web content management system.
 
 ## Build Your Own Content Management System
 
+To run, download the repo, then in terminal:  
+<code>python .\createSiteFiles\main.py</code>
+
 From CIS 112D Advanced Python:
 ### Introduction:
 Content management systems (CMS) are crucial for modern web development, offering a robust framework for creating, managing, and optimizing digital content with ease and efficiency. They enable users, regardless of their technical proficiency, to design and update websites through user-friendly interfaces and pre-built templates, thus democratizing web publishing. CMS platforms like Wordpress now comprise the majority of websites available on the web.

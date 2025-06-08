@@ -3,6 +3,9 @@ from tkinter import ttk
 import json
 
 class Home(tk.Frame):
+    
+    # TO DO - Any time we navigate to this page the json file should be re-read!!
+
     def __init__(self, parent, controller): 
         tk.Frame.__init__(self, parent)
         self.controller = controller
@@ -10,7 +13,7 @@ class Home(tk.Frame):
         self.text = tk.Text(self)
         self.text.pack()
 
-        with open('createSiteFiles\\userFiles\\user.json', 'r') as f:
+        with open('server\\userFiles\\user.json', 'r') as f:
             data = json.load(f)
 
             username = data["userName"]
