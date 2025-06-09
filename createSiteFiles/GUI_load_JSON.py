@@ -71,9 +71,8 @@ class Home(tk.Frame):
 
                 self.text.insert(tk.END, f"{username}'s {siteTitle}\n\n")
                 self.text.insert(tk.END, f"{journalTitle}\n\n")
-                self.text.insert(tk.END, "Latest Book Entry:\n")
-                self.text.insert(tk.END, f"{date}\n {title}\n {author}\n {coverImg}\n {rating}\n {description}\n {spoilers}\n\n")
-                self.text.insert(tk.END, f"{footer}\n\n")
+                self.text.insert(tk.END, f" Date:\t\t{date}\n Title:\t\t{title}\n Author:\t\t{author}\n Cover Image URL:\t\t{coverImg}\n Rating:\t\t{rating}\n Review:\t\t{description}\n Spoilers:\t\t{spoilers}\n\n")
+                self.text.insert(tk.END, f"Footer:\n{footer}\n\n")
         else:
             self.text.insert(tk.END, f"Error: file {self.jsonFilePath} not found!\n")
 
