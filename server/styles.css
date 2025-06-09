@@ -1,0 +1,70 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #FFECD5;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	color: black;
+	padding: 20px;
+}
+
+
+/* ********************************************************** */
+/* ****************        HEADER       ********************* */
+/* ********************************************************** */
+
+.header{
+	display: grid; grid-template-columns: auto auto; grid-template-rows: auto auto; margin: 100px 0 150px 0;}
+
+.header h2{
+	border-top: 4px solid black; text-align: right; padding-top: 20px;}
+
+.header h1{
+	border-bottom: 4px solid black; margin-top: 0; padding-bottom: 20px;}
+
+
+/* ********************************************************** */
+/* ****************        MAIN         ********************* */
+/* ********************************************************** */
+
+.latestHeading {
+	border-bottom: 3px solid black; text-align: center;}
+.latestJournal {
+	display: flex;
+	 flex-direction: row;
+	 gap:50px;
+	 padding: 0 20px;
+	 justify-self: center;}
+.latestText {
+	display: grid; grid-template-columns: auto auto; grid-template-rows: auto auto auto auto auto;}
+.latestText h3, .latestDate {
+	text-align: right;}
+.latestReview{
+	grid-column: 1 / span 2;
+ 	max-width: 700px;
+ 	max-width: 700px;
+ 	justify-self: center;
+}
+.spoilers span {
+	background-color: black;
+ 	color: black;
+ 	transition: 1s;
+}
+.spoilers span:hover {
+	background-color: #FFECD5;
+ 	color: black;
+ 	transition: 1s;
+}
+
+
+/* ********************************************************** */
+/* ****************        FOOTER         ********************* */
+/* ********************************************************** */
+
+footer {
+	background-color: #000000; color: whitesmoke; width: 110%; height: 100px; margin: 50px 0 -15px -15px; display: flex; align-items: center; justify-content: left;}
+footer p {
+	padding-left: 50px;
+}
+

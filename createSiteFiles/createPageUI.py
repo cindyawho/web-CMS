@@ -229,10 +229,11 @@ class EditPageUI(tk.Frame):
         
     # CSS Functions
     def checkBGColor(self):
-        bgColor = self.bgColorVar
+        bgColor = self.bgColorVar.get()
+        print(bgColor)
         return "#FFECD5" if bgColor == "" else bgColor
     def checkFontColor(self):
-        fontColor = self.fontColorVar
+        fontColor = self.fontColorVar.get()
         return "black" if fontColor == "" else fontColor
     def checkFont(self):
         font = self.fontsCombobox.get()
