@@ -25,6 +25,8 @@ class tkinterApp(tk.Frame):
     def show_frame(self, page_name):
         frame = self.frames[page_name]
         frame.tkraise()
+        if hasattr(frame, "refresh"):
+            frame.refresh()
 
 # app = tkinterApp()
 # app.mainloop()

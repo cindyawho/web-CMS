@@ -226,7 +226,18 @@ class EditPageUI(tk.Frame):
             return "Website CMS created by Cindy for a PCC project."
         else:
             return desc
-
+        
+    # CSS Functions
+    def checkBGColor(self):
+        bgColor = self.bgColorVar
+        return "#FFECD5" if bgColor == "" else bgColor
+    def checkFontColor(self):
+        fontColor = self.fontColorVar
+        return "black" if fontColor == "" else fontColor
+    def checkFont(self):
+        font = self.fontsCombobox.get()
+        return "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" if font == "" else font
+    
     # Call error handling functions and write files
     def createWebsite(self):
         # HTML Input Entries
@@ -241,9 +252,9 @@ class EditPageUI(tk.Frame):
         spoilers = self.checkSpoilers()
         footer = self.checkFooter()
         # CSS
-        bgColor = self.bgColorVar
-        fontColor = self.fontColorVar
-        fontFamily = self.fontsCombobox.get()
+        bgColor = self.checkBGColor()
+        fontColor = self.checkFontColor()
+        fontFamily = self.checkFont()
 
         if name and bookTitle:
             self.errorLabel.destroy()
