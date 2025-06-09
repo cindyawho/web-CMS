@@ -119,7 +119,7 @@ class EditPageUI(tk.Frame):
         self.fontColorLabel = ttk.Label(self, text="Font Color: ", style="text.TLabel")
         self.fontColorLabel.grid(row=8, column=0, sticky="e", padx=10, pady=5)
 
-        self.fontColorButton = ttk.Button(self, text='Select Font Color', command=self.changeColor)
+        self.fontColorButton = ttk.Button(self, text='Select Font Color', command=self.changeFontColor)
         self.fontColorButton.grid(row=8, column=1, sticky="w", padx=5)
 
         self.colorLabel = ttk.Label(self, text=".   PREVIEW   .", style="text.TLabel")
@@ -148,6 +148,11 @@ class EditPageUI(tk.Frame):
         # print(colors)
         self.colorLabel.configure(background=colors[1])
         self.bgColorVar = colors[1]
+    def changeFontColor(self):
+        colors = askcolor(title="Tkinter Font Color Chooser")
+        # print(colors)
+        self.colorLabel.configure(foreground=colors[1])
+        self.fontColorVar = colors[1]
     
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # Error Handling for Empty HTML Inputs

@@ -1,4 +1,3 @@
-import createPageUI as cui
 import switchPages
 import tkinter as tk
 

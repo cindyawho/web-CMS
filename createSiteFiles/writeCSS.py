@@ -45,14 +45,14 @@ def writeCSSFile(bgColor="#FFECD5", fontColor="black", fontFamily="'Segoe UI', T
                       "\tbackground-color: black;\n \tcolor: black;\n \ttransition: 1s;\n",
                       "}\n",
                       ".spoilers span:hover {\n",
-                      "\tbackground-color: #FFECD5;\n \tcolor: black;\n \ttransition: 1s;\n"
+                      f"\tbackground-color: {bgColor};\n \tcolor: {fontColor};\n \ttransition: 1s;\n"
                       "}\n\n",
                       ])
         
         # FOOTER Styles
         f.writelines(["\n/* ********************************************************** */\n/* ****************        FOOTER         ********************* */\n/* ********************************************************** */\n\n"])
         f.writelines(["footer {\n",
-                      "\tbackground-color: #ffffff; color: whitesmoke; width: 110%; height: 100px; margin: 50px 0 -15px -15px; display: flex; align-items: center; justify-content: left;",
+                      "\tbackground-color: #000000; color: whitesmoke; width: 110%; height: 100px; margin: 50px 0 -15px -15px; display: flex; align-items: center; justify-content: left;",
                       "}\n",
                       "footer p {\n",
                       "\tpadding-left: 50px;\n",
